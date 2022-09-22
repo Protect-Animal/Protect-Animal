@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:protectanimal/utils/constants.dart';
+import 'package:protectanimal/widgets/custom_text.dart';
 import 'package:protectanimal/widgets/custom_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -16,10 +17,10 @@ class LoginScreen extends StatelessWidget {
     //         BorderSide(color: borderColor ?? HoodTxtFldPlhColor, width: 1.0),
     //     borderRadius: BorderRadius.all(Radius.circular(16.0)));
     return Scaffold(
-      backgroundColor: AppBlack,
+      backgroundColor: black,
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.all(AppContainerPadding),
+          padding: const EdgeInsets.all(bigPadding),
           height: double.infinity,
           width: double.infinity,
           child: Column(
@@ -28,14 +29,10 @@ class LoginScreen extends StatelessWidget {
               Center(
                   child: SvgPicture.asset(
                 'assets/svgs/reindeer.svg',
-                color: AppRedColor,
+                color: red,
               )),
-              Text(
-                'Hello',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32),
+              const CustomText(
+                text: 'Hello',
               ),
               Text(
                 'Welcome to Reindeer',
@@ -45,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                     fontSize: 32),
               ),
               const SizedBox(height: 16),
-              CustomTextField()
+              const CustomTextField(hintText: 'Email address...')
             ],
           ),
         ),

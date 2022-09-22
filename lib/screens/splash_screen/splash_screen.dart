@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: AppRedColor,
+        color: red,
         child: Stack(
           children: [
             Center(child: SvgPicture.asset('assets/svgs/reindeer.svg')),
