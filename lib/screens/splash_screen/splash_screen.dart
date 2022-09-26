@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   RedirectToLogin() {
     Future.delayed(const Duration(milliseconds: 2000), () {
       // Get.toNamed(loginRoute);
-      Get.toNamed(homeRoute);
+      Get.toNamed(mainRoute);
     });
   }
 
