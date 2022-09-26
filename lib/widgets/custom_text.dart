@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:protectanimal/utils/constants.dart';
 
 class CustomText extends StatelessWidget {
-  final String text;
-  final bool? isTitle;
+  final FontWeight? w;
   final double? size;
   final Color? textColor;
-  final FontWeight? w;
+  final bool? isTitle;
+  final bool? isLarge;
+  final bool? isMedium;
+  final bool? isSmall;
+  final String text;
   const CustomText({
     Key? key,
-    required this.text,
-    this.isTitle = false,
+    this.w,
     this.size,
     this.textColor,
-    this.w,
+    this.isTitle = false,
+    this.isLarge = false,
+    this.isMedium = false,
+    this.isSmall = false,
+    required this.text,
   }) : super(key: key);
 
   @override
@@ -21,9 +27,24 @@ class CustomText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          color: textColor ?? white,
-          fontWeight: isTitle != false ? FontWeight.w500 : w ?? FontWeight.bold,
-          fontSize: size ?? textBigSize),
+        color: textColor ??
+            (isTitle != false
+                ? white
+                : isMedium != false
+                    ? textMediumColor
+                    : isSmall != false
+                        ? textSmallColor
+                        : white),
+        fontWeight: isTitle != false ? FontWeight.w500 : w ?? FontWeight.bold,
+        fontSize: size ??
+            (isTitle != false
+                ? textBigSize
+                : isMedium != false
+                    ? textMediumSize
+                    : isSmall != false
+                        ? textSmallSize
+                        : textBigSize),
+      ),
     );
   }
 }
