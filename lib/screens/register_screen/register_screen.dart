@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:protectanimal/screens/login_screen/login_screen.dart';
 import 'package:protectanimal/utils/constants.dart';
 import 'package:protectanimal/utils/routes.dart';
 import 'package:protectanimal/widgets/custom_button.dart';
 import 'package:protectanimal/widgets/custom_text.dart';
 import 'package:protectanimal/widgets/custom_text_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  RegisterScreen({super.key});
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // const focusedinputBorder = OutlineInputBorder(
-    //     borderSide: BorderSide(color: HoodThemeColor, width: 1.0),
-    //     borderRadius: BorderRadius.all(Radius.circular(bigPadding.0)));
-    // final inputBorder = OutlineInputBorder(
-    //     borderSide:
-    //         BorderSide(color: borderColor ?? HoodTxtFldPlhColor, width: 1.0),
-    //     borderRadius: BorderRadius.all(Radius.circular(bigPadding.0)));
     return Scaffold(
       backgroundColor: black,
       body: SafeArea(
@@ -35,20 +30,26 @@ class LoginScreen extends StatelessWidget {
                 'assets/svgs/reindeer.svg',
                 color: red,
               )),
-              const CustomText(
-                text: 'Hello',
-                size: textLargeSize,
-              ),
-              const CustomText(
-                text: 'Welcome to Reindeer',
-                size: textLargeSize,
-              ),
+              // const CustomText(
+              //   text: 'Hello',
+              //   isLarge: true,
+              // ),
+              // const CustomText(
+              //   text: 'Welcome to Reindeer',
+              //   isLarge: true,
+              // ),
               const SizedBox(height: 32),
+
               const CustomText(
-                text: 'Login',
-                size: textLargeSize,
+                text: 'Register',
+                isLarge: true,
               ),
               const SizedBox(height: 24),
+              CustomTextField(
+                hintText: 'Username...',
+                inputController: usernameController,
+              ),
+              const SizedBox(height: bigPadding),
               CustomTextField(
                 hintText: 'Email address...',
                 inputController: emailController,
@@ -59,42 +60,26 @@ class LoginScreen extends StatelessWidget {
                 inputController: passwordController,
               ),
               const SizedBox(height: bigPadding),
-              const CustomButton(text: 'Login'),
+
+              const CustomButton(text: 'Register'),
+
               Flexible(
-                child: Container(),
                 flex: 3,
+                child: Container(),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomText(text: 'New to Reindeer'),
+                  const CustomText(text: 'Already have an account? '),
                   const SizedBox(width: 12),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(registerRoute);
+                      Get.toNamed(loginRoute);
                     },
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                        color: white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: const CustomText(text: 'Login'),
                   )
                 ],
-              ),
-              const SizedBox(height: bigPadding),
-              Center(
-                  child: GestureDetector(
-                onTap: () {
-                  Get.toNamed(profileRoute);
-                },
-                child: CustomText(
-                  text: 'Im a ghost user',
-                  textColor: textFldHintTextColor,
-                  size: textMediumSize,
-                ),
-              ))
+              )
             ],
           ),
         ),
@@ -102,4 +87,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
