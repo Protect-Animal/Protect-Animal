@@ -14,6 +14,9 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override
+  registerUser() {
+    
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: black,
@@ -42,7 +45,7 @@ class RegisterScreen extends StatelessWidget {
 
               const CustomText(
                 text: 'Register',
-                isLarge: true,
+                size: textLargeSize,
               ),
               const SizedBox(height: 24),
               CustomTextField(
@@ -61,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               const SizedBox(height: bigPadding),
 
-              const CustomButton(text: 'Register'),
+              CustomButton(text: 'Register', onTap: registerUser),
 
               Flexible(
                 flex: 3,
