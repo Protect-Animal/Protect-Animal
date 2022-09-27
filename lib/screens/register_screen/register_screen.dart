@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:protectanimal/screens/login_screen/login_screen.dart';
 import 'package:protectanimal/utils/constants.dart';
 import 'package:protectanimal/utils/routes.dart';
 import 'package:protectanimal/widgets/custom_button.dart';
 import 'package:protectanimal/widgets/custom_text.dart';
+import 'package:protectanimal/services/auth_services.dart';
 import 'package:protectanimal/widgets/custom_text_field.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -13,10 +13,19 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  @override
-  registerUser() {
-    
+  register() async {
+    final response = await AuthServices().registerUser(
+        email: emailController.text,
+        password: passwordController.text,
+        username: usernameController.text);
+    print(response);
+    // if (response) {
+    Get.toNamed(loginRoute);
+    // } else {
+    // print('error');
+    // }
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: black,
@@ -64,7 +73,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               const SizedBox(height: bigPadding),
 
-              CustomButton(text: 'Register', onTap: registerUser),
+              CustomButton(text: 'Register', onTap: register),
 
               Flexible(
                 flex: 3,
