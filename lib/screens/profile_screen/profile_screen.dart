@@ -52,11 +52,16 @@ class ProfileScreen extends StatelessWidget {
                               )),
                           PopupMenuItem(
                               padding: const EdgeInsets.all(0),
-                              child: Container(
-                                height: 50,
-                                width: double.infinity,
-                                color: Colors.indigo,
-                                child: CustomText(text: list[1]),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(loginRoute);
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: double.infinity,
+                                  color: Colors.indigo,
+                                  child: CustomText(text: list[1]),
+                                ),
                               ))
                         ])
               ],

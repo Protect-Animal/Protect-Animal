@@ -39,14 +39,15 @@ class UpdateProfileScreen extends StatelessWidget {
         centerTitle: false,
       ),
       body: Container(
+        width: double.infinity,
         padding: const EdgeInsets.all(textBigSize),
-        child: Column(
+        child: ListView(
           children: [
             Stack(
               alignment: Alignment.center,
               children: [
                 Center(
-                  child: Container(
+                  child: SizedBox(
                     height: 200,
                     width: 200,
                     child: Image.network(

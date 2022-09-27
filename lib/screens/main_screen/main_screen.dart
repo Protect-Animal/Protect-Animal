@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:protectanimal/screens/add_post_screen/add_post_screen.dart';
 import 'package:protectanimal/screens/home_screen/home_screen.dart';
 import 'package:protectanimal/screens/library_screen/library_screen.dart';
@@ -7,31 +8,45 @@ import 'package:protectanimal/screens/profile_screen/profile_screen.dart';
 import 'package:protectanimal/utils/constants.dart';
 import 'package:protectanimal/widgets/custom_Inkwell.dart';
 
-final List<Icon> bottomIcons = [
-  const Icon(
-    Icons.home_sharp,
-    color: grey,
-    size: 30,
+// final List<Icon> bottomIcons = [
+//   const Icon(
+//     Icons.home_sharp,
+//     color: grey,
+//     size: 30,
+//   ),
+//   const Icon(
+//     Icons.map,
+//     color: grey,
+//     size: 30,
+//   ),
+//   const Icon(
+//     Icons.abc,
+//     color: grey,
+//   ),
+//   const Icon(
+//     Icons.sticky_note_2,
+//     color: grey,
+//     size: 30,
+//   ),
+//   const Icon(
+//     Icons.person,
+//     color: grey,
+//     size: 30,
+//   ),
+// ];
+final List<SvgPicture> bottomSvgs = [
+  SvgPicture.asset(
+    'assets/svgs/bottomNav/home-1.svg',
   ),
-  const Icon(
-    Icons.map,
-    color: grey,
-    size: 30,
+  SvgPicture.asset(
+    'assets/svgs/bottomNav/map-1.svg',
   ),
-  const Icon(
-    Icons.abc,
-    color: grey,
+  SvgPicture.asset(
+    'assets/svgs/bottomNav/add-square.svg',
+    color: Colors.transparent,
   ),
-  const Icon(
-    Icons.sticky_note_2,
-    color: grey,
-    size: 30,
-  ),
-  const Icon(
-    Icons.person,
-    color: grey,
-    size: 30,
-  ),
+  SvgPicture.asset('assets/svgs/bottomNav/archive.svg'),
+  SvgPicture.asset('assets/svgs/bottomNav/calendar.svg'),
 ];
 
 class MainScreen extends StatefulWidget {
@@ -54,8 +69,10 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     _bottomPadding = MediaQuery.of(context).padding.bottom;
+    print(_bottomPadding);
 
     return Scaffold(
+      extendBody: true,
       backgroundColor: Colors.transparent,
       body: PageView(
         controller: _pageController,
@@ -77,39 +94,46 @@ class _MainScreenState extends State<MainScreen> {
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      bottomNavigationBar: BottomAppBar(
-          color: darkBlue,
-          shape: CircularNotchedRectangle(),
-          // shape: const AutomaticNotchedShape(
-          //   RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.vertical(
-          //       top: Radius.circular(15),
-          //     ),
-          //   ),
-          //   RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.all(Radius.circular(10)),
-          //   ),
-          // ),
-          notchMargin: 10,
-          child: _customNavigationBar()),
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+        child: BottomAppBar(
+            color: darkBlue,
+            // shape: CircularNotchedRectangle(),
+            shape: const AutomaticNotchedShape(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                ),
+              ),
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50)),
+              ),
+            ),
+            notchMargin: 10,
+            child: _customNavigationBar()),
+      ),
     );
   }
 
   Widget _customNavigationBar() {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      // height: 50 + _bottomPadding,
+      height: _bottomPadding + 10,
       // padding: EdgeInsets.only(bottom: _bottomPadding),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: bottomIcons.asMap().entries.map((entry) {
+        children: bottomSvgs.asMap().entries.map((entry) {
           int idx = entry.key;
-          Icon val = entry.value;
+          SvgPicture val = entry.value;
 
           return CustomNavigationItem(
             index: idx,
-            icon: val,
+            svg: val,
             onClickListener: (selectedIndex) async {
               _pageController.animateToPage(
                 selectedIndex,
@@ -125,25 +149,46 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-class CustomNavigationItem extends StatelessWidget {
+class CustomNavigationItem extends StatefulWidget {
   final int? index;
-  final Icon icon;
+  final SvgPicture svg;
   final Function(int)? onClickListener;
 
   const CustomNavigationItem({
     Key? key,
     this.index,
-    required this.icon,
     this.onClickListener,
+    required this.svg,
   }) : super(key: key);
 
   @override
+  State<CustomNavigationItem> createState() => _CustomNavigationItemState();
+}
+
+class _CustomNavigationItemState extends State<CustomNavigationItem> {
+  @override
   Widget build(BuildContext context) {
+    List<SvgPicture> bottomSvgs = [
+      SvgPicture.asset(
+        'assets/svgs/bottomNav/home-1.svg',
+      ),
+      SvgPicture.asset(
+        'assets/svgs/bottomNav/map-1.svg',
+      ),
+      SvgPicture.asset(
+        'assets/svgs/bottomNav/add-square.svg',
+        color: Colors.transparent,
+      ),
+      SvgPicture.asset('assets/svgs/bottomNav/archive.svg'),
+      SvgPicture.asset('assets/svgs/bottomNav/calendar.svg'),
+    ];
     return Container(
-      color: index == 2 ? Colors.transparent : darkBlue,
+      color: widget.index == 2 ? Colors.transparent : darkBlue,
       child: Container(
+        height: double.infinity,
+        width: 50,
+        // padding: EdgeInsets.all(textSmallSize),
         // color: white,
-        // margin: index == 1 ? const EdgeInsets.only(right: 70) : null,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -153,12 +198,20 @@ class CustomNavigationItem extends StatelessWidget {
             //         width: 70,
             //       )
             //     : Container(),
-            CustomInkWell(
-              onTap: () {
-                if (onClickListener != null) onClickListener!(index ?? 0);
-              },
-              child: IconButton(onPressed: () {}, icon: icon),
-            ),
+            widget.index == 2
+                ? Container(
+                    color: Colors.transparent,
+                    child: widget.svg,
+                  )
+                : CustomInkWell(
+                    onTap: () {
+                      if (widget.onClickListener != null)
+                        widget.onClickListener!(widget.index ?? 0);
+                    },
+                    child: Container(
+                      child: widget.svg,
+                    ),
+                  ),
           ],
         ),
       ),

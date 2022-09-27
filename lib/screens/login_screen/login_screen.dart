@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:protectanimal/services/auth_services.dart';
 import 'package:protectanimal/utils/constants.dart';
 import 'package:protectanimal/utils/routes.dart';
+import 'package:protectanimal/utils/sp_manager.dart';
 import 'package:protectanimal/widgets/custom_button.dart';
 import 'package:protectanimal/widgets/custom_text.dart';
 import 'package:protectanimal/widgets/custom_text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -13,13 +18,16 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // const focusedinputBorder = OutlineInputBorder(
-    //     borderSide: BorderSide(color: HoodThemeColor, width: 1.0),
-    //     borderRadius: BorderRadius.all(Radius.circular(bigPadding.0)));
-    // final inputBorder = OutlineInputBorder(
-    //     borderSide:
-    //         BorderSide(color: borderColor ?? HoodTxtFldPlhColor, width: 1.0),
-    //     borderRadius: BorderRadius.all(Radius.circular(bigPadding.0)));
+    loginUser() async {
+      SpManager sharedPreference = SpManager();
+      await sharedPreference.init();
+      final response = await AuthServices().loginUser(
+          email: emailController.text, password: passwordController.text);
+      print(response['token']);
+      await sharedPreference.saveAccessToken((response['token']));
+      Get.toNamed(mainRoute);
+    }
+
     return Scaffold(
       backgroundColor: black,
       body: SafeArea(
@@ -59,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                 inputController: passwordController,
               ),
               const SizedBox(height: bigPadding),
-              const CustomButton(text: 'Login'),
+              CustomButton(text: 'Login', onTap: loginUser),
               Flexible(
                 child: Container(),
                 flex: 3,
@@ -102,4 +110,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
