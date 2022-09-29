@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:protectanimal/utils/constants.dart';
 import 'package:protectanimal/utils/routes.dart';
+import 'package:protectanimal/utils/sp_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,16 +13,21 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  RedirectToLogin() {
-    Future.delayed(const Duration(milliseconds: 2000), () {
-      // Get.toNamed(loginRoute);
+  String? token;
+  RedirectToLogin() async {
+    token = await SpManager().getAccessToken();
+    if (token == '') {
+      Get.toNamed(loginRoute);
+    } else {
       Get.toNamed(mainRoute);
-    });
+    }
   }
 
   @override
   void initState() {
-    RedirectToLogin();
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      RedirectToLogin();
+    });
     super.initState();
   }
 

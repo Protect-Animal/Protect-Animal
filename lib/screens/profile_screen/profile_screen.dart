@@ -5,13 +5,29 @@ import 'package:protectanimal/screens/profile_screen/widgets/tab2.dart';
 import 'package:protectanimal/screens/profile_screen/widgets/tab3.dart';
 import 'package:protectanimal/utils/constants.dart';
 import 'package:protectanimal/utils/routes.dart';
+import 'package:protectanimal/utils/sp_manager.dart';
 import 'package:protectanimal/widgets/custom_avatar.dart';
 import 'package:protectanimal/widgets/custom_button.dart';
 import 'package:protectanimal/widgets/custom_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   List<String> list = ['edit profile', 'logout'];
+  String? token;
+  getUserDatas() async {}
+  @override
+  void initState() {
+    getUserDatas();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -44,11 +60,18 @@ class ProfileScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context) => [
                           PopupMenuItem(
                               padding: const EdgeInsets.all(0),
-                              child: Container(
-                                height: 50,
-                                width: double.infinity,
-                                color: Colors.blue,
-                                child: CustomText(text: list[0]),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  SpManager sharedPreference = SpManager();
+                                  token = await SpManager().getAccessToken();
+                                  print(token);
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: double.infinity,
+                                  color: Colors.blue,
+                                  child: CustomText(text: list[0]),
+                                ),
                               )),
                           PopupMenuItem(
                               padding: const EdgeInsets.all(0),

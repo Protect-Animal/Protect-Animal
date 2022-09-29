@@ -75,6 +75,7 @@ class _MainScreenState extends State<MainScreen> {
       extendBody: true,
       backgroundColor: Colors.transparent,
       body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
         children: [
           HomeScreen(),
@@ -200,9 +201,8 @@ class _CustomNavigationItemState extends State<CustomNavigationItem> {
             //     : Container(),
             widget.index == 2
                 ? Container(
-                    color: Colors.transparent,
-                    child: widget.svg,
-                  )
+                    // color: Colors.transparent,
+                    )
                 : CustomInkWell(
                     onTap: () {
                       if (widget.onClickListener != null)

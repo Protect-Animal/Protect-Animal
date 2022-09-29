@@ -3,6 +3,7 @@ import 'package:protectanimal/screens/home_screen/components/home_header.dart';
 import 'package:protectanimal/screens/profile_screen/widgets/tab1.dart';
 import 'package:protectanimal/screens/profile_screen/widgets/tab2.dart';
 import 'package:protectanimal/screens/profile_screen/widgets/tab3.dart';
+import 'package:protectanimal/screens/profile_screen/widgets/tab4.dart';
 import 'package:protectanimal/utils/constants.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -48,6 +49,7 @@ class HomeScreen extends StatelessWidget {
                   Tab1(),
                   Tab2(),
                   Tab3(),
+                  Tab4(),
                 ],
               ),
             )

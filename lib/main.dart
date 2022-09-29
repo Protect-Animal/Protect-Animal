@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       // theme: ThemeData(fontFamily: 'Nunito'),
-      initialRoute: mainRoute,
+      initialRoute: splashRoute,
       debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder>{
         homeRoute: (context) => HomeScreen(),

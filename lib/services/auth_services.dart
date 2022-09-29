@@ -32,6 +32,7 @@ class AuthServices {
     required String email,
     required String password,
   }) async {
+    print(email + password);
     var client = http.Client();
     var uri = Uri.parse('http://localhost:3000/api/v1/auth/login');
     var body = {"email": "$email", "password": "$password"};

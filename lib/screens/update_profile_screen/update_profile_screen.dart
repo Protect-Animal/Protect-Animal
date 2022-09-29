@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:protectanimal/screens/login_screen/login_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:protectanimal/utils/constants.dart';
-import 'package:protectanimal/widgets/custom_button.dart';
+import 'package:protectanimal/utils/sp_manager.dart';
 import 'package:protectanimal/widgets/custom_text.dart';
+import 'package:protectanimal/widgets/custom_button.dart';
 import 'package:protectanimal/widgets/custom_text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   UpdateProfileScreen({super.key});
@@ -15,6 +14,22 @@ class UpdateProfileScreen extends StatelessWidget {
   final TextEditingController birthdayController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
+  late String? token;
+  late String? response;
+
+  getaccesstoken() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    token = await prefs.getString('ACCESS_TOKEN');
+    print(token);
+  }
+
+  onUpdate() async {
+    print('called');
+    SpManager sharedPreference = SpManager();
+    token = await SpManager().getAccessToken();
+    print(token);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +117,10 @@ class UpdateProfileScreen extends StatelessWidget {
                 inputController: bioController,
                 hintText: 'Say something about you'),
             const SizedBox(height: textBigSize),
-            Flexible(flex: 1, child: Container()),
-            const CustomButton(text: 'Update'),
+            CustomButton(
+              text: 'Update',
+              onTap: onUpdate,
+            ),
             const SizedBox(height: textSmallSize),
             const CustomButton(text: 'Cancel', color: black)
           ],

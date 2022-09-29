@@ -18,7 +18,7 @@ class CustomPost extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CustomAvatar(height: 48, width: 48),
+              CustomAvatar(height: 48, width: 48, image: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fHBlcnNvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(

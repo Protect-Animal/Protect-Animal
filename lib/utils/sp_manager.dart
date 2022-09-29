@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SpManager {
@@ -5,21 +7,20 @@ class SpManager {
 
   final String accessTokenKey = 'ACCESS_TOKEN';
 
-  init() async {
-    sharedPreference = await SharedPreferences.getInstance();
-  }
-
-  // Access Token
+  // Access Token Save
   saveAccessToken(String token) async {
-    print(token + 'this is token');
+    sharedPreference = await SharedPreferences.getInstance();
     await sharedPreference.setString(accessTokenKey, token);
   }
 
+  // Get Access Token
   Future<String> getAccessToken() async {
+    sharedPreference = await SharedPreferences.getInstance();
     String? accessToken = sharedPreference.getString(accessTokenKey);
     return accessToken ?? '';
   }
 
+  // Delete Access Token
   deleteAccessToken() async {
     await sharedPreference.remove(accessTokenKey);
   }
