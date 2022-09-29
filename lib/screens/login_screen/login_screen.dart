@@ -20,12 +20,15 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     loginUser() async {
       SpManager sharedPreference = SpManager();
-      await sharedPreference.init();
       final response = await AuthServices().loginUser(
           email: emailController.text, password: passwordController.text);
       print(response['token']);
-      await sharedPreference.saveAccessToken((response['token']));
-      Get.toNamed(mainRoute);
+      if (response['token'] != null) {
+        await sharedPreference.saveAccessToken(response['token']);
+        Get.toNamed(mainRoute);
+      } else {
+        print('username or password wrong');
+      }
     }
 
     return Scaffold(
