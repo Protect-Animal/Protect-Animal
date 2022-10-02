@@ -141,7 +141,7 @@ class _MainScreenState extends State<MainScreen> {
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
               );
-              _pageController.jumpToPage(selectedIndex);
+              // _pageController.jumpToPage(selectedIndex);
             },
           );
         }).toList(),
