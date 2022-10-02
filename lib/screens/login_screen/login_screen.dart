@@ -36,10 +36,9 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(bigPadding),
-          height: double.infinity,
           width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          height: double.infinity,
+          child: ListView(
             children: [
               Center(
                   child: SvgPicture.asset(
@@ -71,27 +70,21 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: bigPadding),
               CustomButton(text: 'Login', onTap: loginUser),
-              Flexible(
-                child: Container(),
-                flex: 3,
-              ),
+              const SizedBox(height: 32),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomText(text: 'New to Reindeer'),
+                  const CustomText(text: 'New to Reindeer'),
                   const SizedBox(width: 12),
                   GestureDetector(
-                    onTap: () {
-                      Get.toNamed(registerRoute);
-                    },
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                        color: white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  )
+                      onTap: () {
+                        Get.toNamed(registerRoute);
+                      },
+                      child: const CustomText(
+                        text: 'Register',
+                        isMedium: true,
+                        textColor: white,
+                      ))
                 ],
               ),
               const SizedBox(height: bigPadding),
@@ -105,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                   textColor: textFldHintTextColor,
                   size: textMediumSize,
                 ),
-              ))
+              )),
             ],
           ),
         ),

@@ -32,67 +32,64 @@ class RegisterScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(bigPadding),
-          height: double.infinity,
           width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                  child: SvgPicture.asset(
-                'assets/svgs/reindeer.svg',
-                color: red,
-              )),
-              // const CustomText(
-              //   text: 'Hello',
-              //   isLarge: true,
-              // ),
-              // const CustomText(
-              //   text: 'Welcome to Reindeer',
-              //   isLarge: true,
-              // ),
-              const SizedBox(height: 32),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                    child: SvgPicture.asset(
+                  'assets/svgs/reindeer.svg',
+                  color: red,
+                )),
+                // const CustomText(
+                //   text: 'Hello',
+                //   isLarge: true,
+                // ),
+                // const CustomText(
+                //   text: 'Welcome to Reindeer',
+                //   isLarge: true,
+                // ),
+                const SizedBox(height: 32),
 
-              const CustomText(
-                text: 'Register',
-                size: textLargeSize,
-              ),
-              const SizedBox(height: 24),
-              CustomTextField(
-                hintText: 'Username...',
-                inputController: usernameController,
-              ),
-              const SizedBox(height: bigPadding),
-              CustomTextField(
-                hintText: 'Email address...',
-                inputController: emailController,
-              ),
-              const SizedBox(height: bigPadding),
-              CustomTextField(
-                hintText: 'Password...',
-                inputController: passwordController,
-              ),
-              const SizedBox(height: bigPadding),
+                const CustomText(
+                  text: 'Register',
+                  size: textLargeSize,
+                ),
+                const SizedBox(height: 24),
+                CustomTextField(
+                  hintText: 'Username...',
+                  inputController: usernameController,
+                ),
+                const SizedBox(height: bigPadding),
+                CustomTextField(
+                  hintText: 'Email address...',
+                  inputController: emailController,
+                ),
+                const SizedBox(height: bigPadding),
+                CustomTextField(
+                  hintText: 'Password...',
+                  inputController: passwordController,
+                ),
+                const SizedBox(height: bigPadding),
 
-              CustomButton(text: 'Register', onTap: register),
-
-              Flexible(
-                flex: 3,
-                child: Container(),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CustomText(text: 'Already have an account? '),
-                  const SizedBox(width: 12),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(loginRoute);
-                    },
-                    child: const CustomText(text: 'Login'),
-                  )
-                ],
-              )
-            ],
+                CustomButton(text: 'Register', onTap: register),
+                const SizedBox(height: 32),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CustomText(text: 'Already have an account? '),
+                    const SizedBox(width: 12),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(loginRoute);
+                      },
+                      child: const CustomText(text: 'Login'),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

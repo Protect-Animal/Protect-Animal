@@ -5,7 +5,7 @@ const black = Colors.black;
 const white = Colors.white;
 const darkBlue = Color(0XFF041522);
 const grey = Color(0XFF979797);
-
+final bottomsheetcolor = Color(0XFF020A10);
 final textMediumColor = Colors.white.withOpacity(0.64);
 final textSmallColor = Colors.white.withOpacity(0.34);
 final dividerColor = Colors.white.withOpacity(0.1);
@@ -23,5 +23,3 @@ const textMediumSmallSize = 18.0;
 const textBigSize = 16.0;
 const textMediumSize = 14.0;
 const textSmallSize = 12.0;
-
-
