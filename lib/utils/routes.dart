@@ -7,3 +7,4 @@ const String profileRoute = './ProifleScreen';
 const String mapRoute = './MapScreen';
 const String addPostRoute = './AddPostScreen';
 const String mainRoute = './MainScreen';
+const String animalInfoRoute = './AnimalInfoScreen';

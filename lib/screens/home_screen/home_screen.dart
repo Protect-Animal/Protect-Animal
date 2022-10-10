@@ -27,7 +27,8 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   width: 380,
                   child: TabBar(
-                      labelPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      labelPadding:
+                          const EdgeInsets.symmetric(horizontal: 10.0),
                       unselectedLabelColor: textSmallColor,
                       indicatorColor: Colors.transparent,
                       labelColor: white,
@@ -44,12 +45,12 @@ class HomeScreen extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  Tab1(),
-                  Tab2(),
+                  const Tab1(),
+                  const Tab2(),
                   Tab3(),
-                  Tab4(),
+                  const Tab4(),
                 ],
               ),
             )

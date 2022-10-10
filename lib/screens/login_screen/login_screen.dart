@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -10,7 +8,6 @@ import 'package:protectanimal/utils/sp_manager.dart';
 import 'package:protectanimal/widgets/custom_button.dart';
 import 'package:protectanimal/widgets/custom_text.dart';
 import 'package:protectanimal/widgets/custom_text_field.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -60,11 +57,14 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               CustomTextField(
+                haveLabel: true,
                 hintText: 'Email address...',
                 inputController: emailController,
               ),
               const SizedBox(height: bigPadding),
               CustomTextField(
+                height: 50,
+                haveLabel: true,
                 hintText: 'Password...',
                 inputController: passwordController,
               ),

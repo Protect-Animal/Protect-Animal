@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:protectanimal/screens/add_post_screen/add_post_screen.dart';
 import 'package:protectanimal/screens/home_screen/home_screen.dart';
 import 'package:protectanimal/screens/library_screen/library_screen.dart';
 import 'package:protectanimal/screens/map_screen/map_screen.dart';
 import 'package:protectanimal/screens/profile_screen/profile_screen.dart';
 import 'package:protectanimal/utils/constants.dart';
+import 'package:protectanimal/utils/routes.dart';
 import 'package:protectanimal/widgets/custom_Inkwell.dart';
 
 // final List<Icon> bottomIcons = [
@@ -50,7 +52,7 @@ final List<SvgPicture> bottomSvgs = [
 ];
 
 class MainScreen extends StatefulWidget {
-  MainScreen({super.key});
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -78,19 +80,20 @@ class _MainScreenState extends State<MainScreen> {
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
         children: [
-          HomeScreen(),
-          MapScreen(),
+          const HomeScreen(),
+          const MapScreen(),
           AddPostScreen(),
-          LibraryScreen(),
+          const LibraryScreen(),
           ProfileScreen(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         foregroundColor: white,
         elevation: 0,
-        // backgroundColor: Theme.of(context).primaryColor,
         backgroundColor: darkBlue,
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(addPostRoute);
+        },
         child: const Icon(Icons.add_box_outlined, color: grey, size: 30),
       ),
       floatingActionButtonLocation:
@@ -136,12 +139,12 @@ class _MainScreenState extends State<MainScreen> {
             index: idx,
             svg: val,
             onClickListener: (selectedIndex) async {
-              _pageController.animateToPage(
-                selectedIndex,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-              );
-              // _pageController.jumpToPage(selectedIndex);
+              // _pageController.animateToPage(
+              //   selectedIndex,
+              //   duration: const Duration(milliseconds: 500),
+              //   curve: Curves.easeInOut,
+              // );
+              _pageController.jumpToPage(selectedIndex);
             },
           );
         }).toList(),
@@ -185,7 +188,7 @@ class _CustomNavigationItemState extends State<CustomNavigationItem> {
     ];
     return Container(
       color: widget.index == 2 ? Colors.transparent : darkBlue,
-      child: Container(
+      child: SizedBox(
         height: double.infinity,
         width: 50,
         // padding: EdgeInsets.all(textSmallSize),
@@ -205,8 +208,9 @@ class _CustomNavigationItemState extends State<CustomNavigationItem> {
                     )
                 : CustomInkWell(
                     onTap: () {
-                      if (widget.onClickListener != null)
+                      if (widget.onClickListener != null) {
                         widget.onClickListener!(widget.index ?? 0);
+                      }
                     },
                     child: Container(
                       child: widget.svg,

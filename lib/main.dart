@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:protectanimal/screens/add_post_screen/add_post_screen.dart';
+import 'package:protectanimal/screens/animal_info_screen/animal_info_screen.dart';
 import 'package:protectanimal/screens/main_first/main_urnaa.dart';
 import 'package:protectanimal/screens/login_screen/login_screen.dart';
 import 'package:protectanimal/screens/main_screen/main_screen.dart';
@@ -24,13 +26,15 @@ class MyApp extends StatelessWidget {
       initialRoute: splashRoute,
       debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder>{
-        homeRoute: (context) => HomeScreen(),
+        homeRoute: (context) => const HomeScreen(),
         loginRoute: (context) => LoginScreen(),
-        splashRoute: (context) => SplashScreen(),
+        splashRoute: (context) => const SplashScreen(),
         registerRoute: (context) => RegisterScreen(),
         profileRoute: (context) => ProfileScreen(),
         updateProRoute: (context) => UpdateProfileScreen(),
-        mainRoute: (context) => MainScreen(),
+        mainRoute: (context) => const MainScreen(),
+        animalInfoRoute: (context) => const AnimalInfoScreen(),
+        addPostRoute: (context) => AddPostScreen(),
       },
     );
   }

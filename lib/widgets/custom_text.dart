@@ -26,6 +26,7 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      // overflow: TextOverflow.clip,
       style: TextStyle(
         color: textColor ??
             (isTitle != false

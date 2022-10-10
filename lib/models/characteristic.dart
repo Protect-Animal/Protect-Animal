@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'characteristic.g.dart';
@@ -71,7 +72,8 @@ class Characteristics {
   String? height;
   String? prey;
   String? group;
-  factory Characteristics.fromJson(Map<String, dynamic> json) => _$CharacteristicsFromJson(json);
+  factory Characteristics.fromJson(Map<String, dynamic> json) =>
+      _$CharacteristicsFromJson(json);
 
   Map<String, dynamic> toJson() => _$CharacteristicsToJson(this);
 }

@@ -1,6 +1,7 @@
 import 'package:protectanimal/models/characteristic.dart';
 import 'package:protectanimal/models/coordinates.dart';
 
+// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'animal.g.dart';
